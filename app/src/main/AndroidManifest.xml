@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.hello.usingintent">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- 新注册一个Activity -->
+        <!-- .是指程序在运行时会和package="com.hello.usingintent" 拼接起来 -->
+        <!-- android:exported="false" 禁止跨应用启动本Activity,默认是true 可以跨应用被启动 -->
+        <activity
+            android:name=".MyActivity"
+            android:exported="true"
+            android:label="MyActivity"
+            >
+
+            <!-- 隐形Intent -->
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+                <!-- action命名方式：包命+intent+Activity名 -->
+                <!-- 也可以写任意字母 -->
+                <action android:name="com.hello.usingintent.intent.action.MyActivity" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".MyActivity1"
+            android:label="/MyActivity1"
+            >
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <!--和MyActivity使用同一个Action-->
+                <action android:name="com.hello.usingintent.intent.action.MyActivity" />
+                <!--添加一个过滤协议，用来区分与MyActivity的Action-->
+                <data android:scheme="app"></data>
+            </intent-filter>
+
+        </activity>
+    </application>
+
+</manifest>
